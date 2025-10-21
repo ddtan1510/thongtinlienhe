@@ -763,6 +763,103 @@ ready(appendSnow);
   </div>
   <div class="card">
     </div>
+<title>Hiệu ứng Tim Rơi ❤️</title>
+    <style>
+        /* CSS cho hiệu ứng */
+        body {
+            /* Đặt màu nền để dễ thấy tim hơn */
+            background-color: #222;
+            /* Quan trọng: Ngăn thanh cuộn ngang xuất hiện khi tim bay ra lề */
+            overflow-x: hidden;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .heart {
+            /* Sử dụng 'fixed' để tim luôn rơi so với màn hình */
+            position: fixed;
+            
+            /* Bắt đầu từ vị trí bên trên màn hình (-50px) */
+            top: -50px;
+            
+            /* Dùng emoji làm trái tim */
+            font-size: 24px;
+            
+            /* Tên animation, sẽ được định nghĩa ở dưới */
+            animation-name: fall;
+            
+            /* Kiểu rơi: tuyến tính (đều) */
+            animation-timing-function: linear;
+            
+            /* Chỉ chạy 1 lần, JS sẽ lo việc tạo tim mới */
+            animation-iteration-count: 1;
+            
+            /* Không cho phép người dùng chọn (bôi đen) trái tim */
+            user-select: none;
+        }
+
+        /* Định nghĩa chuyển động 'fall' */
+        @keyframes fall {
+            0% {
+                /* Bắt đầu: ở vị trí ban đầu, không xoay, rõ 100% */
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                /* Kết thúc: Rơi 110% chiều cao màn hình, xoay 1 vòng, và mờ dần */
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // JavaScript để tạo tim ngẫu nhiên
+
+        /**
+         * Hàm tạo ra một trái tim
+         */
+        function createHeart() {
+            // 1. Tạo một element 'div' mới
+            const heart = document.createElement('div');
+            
+            // 2. Thêm class 'heart' để áp dụng CSS
+            heart.classList.add('heart');
+            
+            // 3. Chọn một emoji tim ngẫu nhiên
+            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💜', '💛'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+
+            // === Ngẫu nhiên hóa thuộc tính cho mỗi trái tim ===
+
+            // 4. Vị trí ngang (left): ngẫu nhiên từ 0% đến 100% chiều rộng màn hình
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // 5. Tốc độ rơi (animation-duration): ngẫu nhiên từ 4 đến 7 giây
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            
+            // 6. Kích cỡ (font-size): ngẫu nhiên từ 10px đến 25px
+            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            
+            // 7. Độ mờ (opacity): ngẫu nhiên từ 0.5 đến 1.0 (tránh các tim quá mờ)
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            
+            // 8. Thêm trái tim vào trang web
+            document.body.appendChild(heart);
+
+            // 9. (Rất quan trọng) Xóa trái tim khỏi DOM sau khi nó rơi xong
+            // Điều này giúp trang web không bị chậm (lag) do có quá nhiều element
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Dùng 'setInterval' để gọi hàm createHeart() lặp đi lặp lại
+        // Ở đây, một trái tim mới sẽ được tạo ra mỗi 200 mili-giây
+        setInterval(createHeart, 200);
+    </script>
     
 
 <!-- Design By Đào Duy Tân -->
