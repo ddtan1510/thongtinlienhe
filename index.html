@@ -107,27 +107,7 @@
         pointer-events: auto;
       }
       
-      /* === BỘ ĐẾM KHÁCH TRUY CẬP MỚI (KOMAREV - GHIM GÓC TRÁI TRÊN CÙNG) === */
-      #visitor-counter {
-          position: fixed;   /* Ghim cố định */
-          top: 15px;         /* Cách lề trên 15px */
-          left: 15px;        /* Cách lề trái 15px */
-          z-index: 1000;     /* Cho nó nổi lên trên cùng */
-          /* Tùy chỉnh hiển thị */
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 5px;
-      }
 
-      /* Tùy chỉnh hiển thị cho Shields.io Badge */
-      #visitor-counter img {
-          border: 1px solid white;
-          border-radius: 5px;
-          box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-          height: 25px; /* Giảm kích thước để không quá lớn */
-      }
-      /* === KẾT THÚC BỘ ĐẾM === */
 
 
       /* === OVERLAY & ANIMATION === */
@@ -426,9 +406,33 @@
     </style>
   </head>
   <body>
-    <div id="visitor-counter">
-      <img src="https://komarev.com/ghpvc/?username=ddtan1510&label=Visitors&color=blue&style=flat" alt="Visitor count" />
-    </div>
+<div id="counter-wrapper" style="position:fixed;top:20px;left:20px;z-index:9997;font-size:28px;font-weight:bold;text-align:center;color:#ff0000;text-shadow:0 0 5px #ff0000,0 0 10px #ffff00,0 0 15px #00ffff,0 0 20px #ff00ff;animation:nglow 2s infinite alternate;">
+  <script type="text/javascript" src="https://www.free-counters.org/count/iyyp"></script><br>
+  <a href="https://www.acadoo.de/leistungen/ghostwriter-doktorarbeit/" style="color:inherit;text-decoration:none;display:block;">Dissertation schreiben</a>
+  <script type="text/javascript" src="https://www.whomania.com/ctr?id=1a2976d70a0dd8853a055ce8c62e0a95728dbc29"></script>
+</div>
+
+<style>
+@keyframes nglow{
+  0%{text-shadow:0 0 5px #ff0000,0 0 10px #ffff00,0 0 15px #00ffff,0 0 20px #ff00ff;}
+  25%{text-shadow:0 0 6px #ff9900,0 0 12px #00ff00,0 0 18px #ff00ff,0 0 24px #ffff00;}
+  50%{text-shadow:0 0 7px #00ffff,0 0 14px #ff00ff,0 0 21px #ffff00,0 0 28px #ff0000;}
+  75%{text-shadow:0 0 6px #ff00ff,0 0 12px #ff0000,0 0 18px #00ff00,0 0 24px #ffff00;}
+  100%{text-shadow:0 0 5px #ff0000,0 0 10px #ffff00,0 0 15px #00ffff,0 0 20px #ff00ff;}
+}
+</style>
+
+<script>
+// Chờ script hit counter load xong, ép tất cả link mở tab mới
+setTimeout(() => {
+  const links = document.getElementById('counter-wrapper').getElementsByTagName('a');
+  for(let a of links){
+    a.setAttribute('target','_blank');
+    a.setAttribute('rel','noopener');
+  }
+}, 1000);
+</script>
+
     <div class="container">
       <img class="avatar" src="img/btran3.jpg" alt="Avatar" />
       <div class="username">Đào Duy Tân</div>
