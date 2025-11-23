@@ -55,6 +55,7 @@
     <title>Đào Duy Tân</title>
 
     <style>
+      /* === KHỐI CƠ SỞ === */
       * {
         margin: 0;
         padding: 0;
@@ -62,38 +63,41 @@
       }
 
       body {
+        /* Đảm bảo chiều cao tối thiểu 100% viewport */
+        min-height: 100vh; 
         background: url("img/akali.jpg") no-repeat center center fixed;
         background-size: cover;
         font-family: "Segoe UI", sans-serif;
         color: white;
-        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
         user-select: none;
         -webkit-user-drag: none;
+        overflow-y: auto; /* Cho phép cuộn dọc */
+        padding: 20px 0; /* Thêm padding trên dưới cho nội dung */
       }
 
-      /* Ngăn đè và lưu ảnh - avatar và ảnh cover */
+      /* Ngăn đè và lưu ảnh */
       img.avatar,
       img.cover {
-        user-select: none; /* Không cho chọn ảnh */
-        pointer-events: none; /* Ngăn nhấp chuột phải, chạm giữ */
-        -webkit-user-drag: none; /* Ngăn kéo ảnh trên Safari/Chrome */
-        touch-action: none; /* Ngăn thao tác cảm ứng */
+        user-select: none;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        touch-action: none;
       }
 
       /* Tắt chọn văn bản */
       * {
-        user-select: none !important; /* Tắt chọn văn bản trên tất cả các trình duyệt */
-        -webkit-user-select: none !important; /* Dành cho Safari */
-        -moz-user-select: none !important; /* Dành cho Firefox */
-        -ms-user-select: none !important; /* Dành cho Internet Explorer */
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
       }
 
       .container {
         max-width: 420px;
-        width: 100%;
+        width: 90%; /* Chiếm 90% chiều rộng màn hình trên mobile */
         padding: 30px;
         background: rgba(0, 0, 0, 0.5);
         border-radius: 20px;
@@ -103,6 +107,7 @@
         pointer-events: auto;
       }
 
+      /* === OVERLAY & ANIMATION === */
       .overlay {
         position: fixed;
         top: 0;
@@ -127,21 +132,11 @@
       }
 
       @keyframes rainbowBorder {
-        0% {
-          border-color: #ff0000;
-        }
-        25% {
-          border-color: #00ff00;
-        }
-        50% {
-          border-color: #0000ff;
-        }
-        75% {
-          border-color: #ff00ff;
-        }
-        100% {
-          border-color: #ff0000;
-        }
+        0% { border-color: #ff0000; }
+        25% { border-color: #00ff00; }
+        50% { border-color: #0000ff; }
+        75% { border-color: #ff00ff; }
+        100% { border-color: #ff0000; }
       }
 
       .avatar {
@@ -173,12 +168,8 @@
       }
 
       @keyframes colorChange {
-        0% {
-          background-position: 300% 0%;
-        }
-        100% {
-          background-position: -300% 0%;
-        }
+        0% { background-position: 300% 0%; }
+        100% { background-position: -300% 0%; }
       }
 
       .socials a {
@@ -196,20 +187,21 @@
         margin-bottom: 30px;
       }
 
+      /* === TRÌNH PHÁT NHẠC (MUSIC PLAYER) - RESPONSIVE === */
       .music-player {
         display: flex;
         align-items: center;
         background: rgba(255, 255, 255, 0.1);
         border-radius: 15px;
-        padding: 30px 15px;
-        gap: 15px;
+        padding: 15px; /* Giảm padding trên mobile */
+        gap: 10px; /* Giảm khoảng cách */
         width: 100%;
         justify-content: space-between;
       }
 
       .cover {
-        width: 60px;
-        height: 60px;
+        width: 50px; /* Giảm kích thước cover */
+        height: 50px;
         border-radius: 10px;
         object-fit: cover;
       }
@@ -217,29 +209,36 @@
       .music-info {
         flex: 1;
         text-align: left;
+        min-width: 0; 
       }
 
       .title {
-        font-size: 20px;
+        font-size: 18px; 
         font-weight: bold;
         position: relative;
-        top: -5px;
+        top: -3px;
+        /* Đảm bảo tiêu đề không bị tràn */
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
       }
 
       .controls {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px; /* Giảm khoảng cách giữa các nút */
+        flex-wrap: nowrap; /* Giữ các nút trên cùng 1 hàng */
       }
 
       .controls button {
         background: none;
         border: none;
         color: white;
-        font-size: 25px;
+        font-size: 20px; /* Giảm kích thước nút điều khiển */
         cursor: pointer;
       }
-
+      
+      /* Căn chỉnh cho thanh tìm kiếm (seekbar) */
       .seekbar {
         position: relative;
         width: 100%;
@@ -275,11 +274,12 @@
       .time {
         display: flex;
         justify-content: space-between;
-        font-size: 15px;
+        font-size: 14px; 
         margin-top: 2px;
         color: #ccc;
       }
-
+      
+      /* === COPYRIGHT VÀ RAINBOW BORDER === */
       .hvb-copyright {
         padding: 6px 12px;
         font-weight: bold;
@@ -319,48 +319,87 @@
         }
       }
 
-      /* ================================================= */
-      /* CSS ĐÃ CHỈNH SỬA CHO THANH ÂM LƯỢNG (THEO YÊU CẦU) */
-      /* ================================================= */
-      
-      /* Thiết lập cho phần điều khiển âm lượng */
+      /* === THANH CHỈNH ÂM LƯỢNG (VOLUME CONTROL) === */
       .volume-control {
         display: flex;
         align-items: center;
-        gap: 8px;
-        margin-left: 15px; /* Tạo khoảng cách với nút forward */
+        gap: 6px; 
+        margin-left: 10px;
+        flex-shrink: 1; 
+        min-width: 90px;
       }
 
-      /* Kích thước và màu sắc của thanh trượt */
       #volume-slider {
         -webkit-appearance: none;
-        width: 80px; /* Tăng chiều dài cho dễ chỉnh */
-        height: 6px; /* Tăng độ dày */
-        background: rgba(255, 255, 255, 0.4);
+        width: 100%; 
+        height: 6px;
+        background: rgba(255, 255, 255, 0.4); /* Sẽ bị ghi đè bởi JS */
         border-radius: 3px;
         outline: none;
         cursor: pointer;
       }
 
-      /* Style cho 'thumb' (nút tròn) của thanh trượt */
       #volume-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        background: #00ffcc; /* Màu sắc tương đồng với thanh seek */
+        background: #00ffcc;
         cursor: pointer;
-        box-shadow: 0 0 5px rgba(0, 255, 204, 0.5); /* Thêm hiệu ứng phát sáng */
+        box-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
       }
-
-      /* Tăng kích thước biểu tượng loa */
+      
+      /* Tùy chỉnh màu track (phần không fill) */
+      #volume-slider::-webkit-slider-runnable-track { background: rgba(255, 255, 255, 0.4); }
+      #volume-slider::-moz-range-track { background: rgba(255, 255, 255, 0.4); }
+      
       #volume-icon {
-        font-size: 24px; /* Tăng kích thước icon loa */
+        font-size: 20px; 
         color: white;
         cursor: pointer;
+        flex-shrink: 0; 
       }
-      /* ================================================= */
+      
+      /* MEDIA QUERY: Tối ưu hóa cho màn hình rất nhỏ (dưới 380px) */
+      @media (max-width: 380px) {
+        .music-player {
+          /* Chuyển sang xếp chồng để tránh tràn ngang */
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 15px;
+        }
+
+        .cover {
+          width: 60px;
+          height: 60px;
+        }
+
+        .music-info {
+            width: 100%;
+            /* Sử dụng flex-direction: column để stack title, controls, seekbar, time */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .controls {
+            /* Đặt controls ở giữa khi stack */
+            justify-content: center;
+            width: 100%; 
+            margin-top: 5px;
+        }
+
+        .volume-control {
+            /* Đặt thanh volume xuống dòng riêng, chiếm toàn bộ chiều rộng */
+            width: 100%;
+            margin-left: 0;
+            order: 10; /* Đẩy xuống cuối cùng */
+            justify-content: center;
+            padding: 0 10px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -555,15 +594,22 @@
       });
       loadSong(currentIndex);
 
-      // LOGIC ÂM LƯỢNG
+      // LOGIC ÂM LƯỢNG (FIXED FOR FILL COLOR AND MOBILE)
       const volumeSlider = document.getElementById("volume-slider");
       const volumeIcon = document.getElementById("volume-icon");
 
+      function updateVolumeFill() {
+        // Cập nhật gradient fill cho thanh trượt
+        const percent = volumeSlider.value * 100;
+        volumeSlider.style.background = `linear-gradient(to right, #00ffcc 0%, #00ffcc ${percent}%, rgba(255, 255, 255, 0.4) ${percent}%, rgba(255, 255, 255, 0.4) 100%)`;
+      }
+      
       // 1. Gắn sự kiện thay đổi âm lượng cho thanh trượt
       volumeSlider.addEventListener("input", () => {
         // Cập nhật âm lượng của thẻ audio
         audio.volume = volumeSlider.value;
         updateVolumeIcon(audio.volume);
+        updateVolumeFill(); // Cập nhật màu fill
       });
 
       // 2. Gắn sự kiện tắt/bật tiếng khi nhấp vào icon
@@ -582,6 +628,7 @@
           audio.volume = lastVolume;
           updateVolumeIcon(lastVolume);
         }
+        updateVolumeFill(); // Cập nhật màu fill
       });
 
       // 3. Hàm cập nhật biểu tượng loa dựa trên mức âm lượng
@@ -597,15 +644,23 @@
       }
 
       // Thiết lập âm lượng ban đầu của thanh trượt khi load trang (1.0 = 100%)
-      audio.volume = volumeSlider.value;
+      audio.volume = volumeSlider.value; 
       updateVolumeIcon(audio.volume);
+      updateVolumeFill(); // Kích hoạt màu fill ban đầu
     </script>
     <script>
       // CHẶN CHUỘT PHẢI VÀ CHỌN VĂN BẢN
       document.addEventListener("contextmenu", (e) => e.preventDefault());
       document.addEventListener("selectstart", (e) => e.preventDefault());
 
-    
+      // LƯU Ý: Lệnh chặn kéo chuột toàn bộ đã được loại bỏ để thanh âm lượng hoạt động.
+      /*
+      // CHẶN KÉO CHUỘT (ĐÃ BỊ VÔ HIỆU HÓA)
+      ["mousedown", "mousemove", "mouseup"].forEach((evt) =>
+        document.addEventListener(evt, (e) => e.preventDefault())
+      );
+      */
+      
 
       // CHẶN PHÍM TẮT DEVTOOLS & SAO CHÉP
       document.addEventListener("keydown", (e) => {
@@ -857,134 +912,4 @@ transform-origin: center; }`;
           flake.setAttribute('aria-hidden', 'true');
           flake.setAttribute('role', 'presentation');
           flake.innerHTML =
-            "<img style='width:30px;height:30px;' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEtGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i 
-              
-              ... (dữ liệu hình ảnh hoa mai/tuyết rơi) ...
-              
-              />";
-          resetFlake(flake);
-          flakes.push(flake);
-          field.appendChild(flake);
-          if (i++ <= MAX_FLAKES) {
-            setTimeout(addFlake, Math.ceil(Math.random() * 300) + 100);
-          }
-        };
-        addFlake();
-        updatePositions();
-      }
-      ready(appendSnow);
-    </script>
-    <link rel="stylesheet" href="style.css"> <style>
-      #visitor-counter {
-        position: fixed; 
-        top: 15px; 
-        left: 15px; 
-        z-index: 1000; 
-      #visitor-counter a[href*='counter-zaehler.de'] {
-        display: none !important;
-      }
-    </style>
-    <div id="visitor-counter">
-      
-      <script type="text/javascript" src="https://www.free-counters.org/count/issn"></script><br>
-    <a href='http://www.counter-zaehler.de'>besucherzähler in html</a> <script type='text/javascript' src='https://whomania.com/ctr?id=7c23e2d5bd91f7b500071c82cece42d35788aca9'></script>
-    </div>
-    <div class="card">
-      </div>
-    <title>Hiệu ứng Tim Rơi ❤️</title>
-      <style>
-        /* CSS cho hiệu ứng */
-        body {
-          /* Đặt màu nền để dễ thấy tim hơn */
-          background-color: #222;
-          /* Quan trọng: Ngăn thanh cuộn ngang xuất hiện khi tim bay ra lề */
-          overflow-x: hidden;
-          height: 100vh;
-          margin: 0;
-        }
-
-        .heart {
-          /* Sử dụng 'fixed' để tim luôn rơi so với màn hình */
-          position: fixed;
-          
-          /* Bắt đầu từ vị trí bên trên màn hình (-50px) */
-          top: -50px;
-          
-          /* Dùng emoji làm trái tim */
-          font-size: 24px;
-          
-          /* Tên animation, sẽ được định nghĩa ở dưới */
-          animation-name: fall;
-          
-          /* Kiểu rơi: tuyến tính (đều) */
-          animation-timing-function: linear;
-          
-          /* Chỉ chạy 1 lần, JS sẽ lo việc tạo tim mới */
-          animation-iteration-count: 1;
-          
-          /* Không cho phép người dùng chọn (bôi đen) trái tim */
-          user-select: none;
-        }
-
-        /* Định nghĩa chuyển động 'fall' */
-        @keyframes fall {
-          0% {
-            /* Bắt đầu: ở vị trí ban đầu, không xoay, rõ 100% */
-            transform: translateY(0) rotate(0);
-            opacity: 1;
-          }
-          100% {
-            /* Kết thúc: Rơi 110% chiều cao màn hình, xoay 1 vòng, và mờ dần */
-            transform: translateY(110vh) rotate(360deg);
-            opacity: 0;
-          }
-        }
-      </style>
-    </head>
-    <body>
-
-      <script>
-        // JavaScript để tạo tim ngẫu nhiên
-
-        /**
-          * Hàm tạo ra một trái tim
-          */
-        function createHeart() {
-          // 1. Tạo một element 'div' mới
-          const heart = document.createElement('div');
-          
-          // 2. Thêm class 'heart' để áp dụng CSS
-          heart.classList.add('heart');
-          
-          // 3. Chọn một emoji tim ngẫu nhiên
-          const hearts = ['❤️', '💖', '💕', '💗', '💓', '💜', '💛'];
-          heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-
-          // === Ngẫu nhiên hóa thuộc tính cho mỗi trái tim ===
-
-          // 4. Vị trí ngang (left): ngẫu nhiên từ 0% đến 100% chiều rộng màn hình
-          heart.style.left = Math.random() * 100 + 'vw';
-          
-          // 5. Tốc độ rơi (animation-duration): ngẫu nhiên từ 4 đến 7 giây
-          heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-          
-          // 6. Kích cỡ (font-size): ngẫu nhiên từ 10px đến 25px
-          heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
-          
-          // 7. Độ mờ (opacity): ngẫu nhiên từ 0.5 đến 1.0 (tránh các tim quá mờ)
-          heart.style.opacity = Math.random() * 0.5 + 0.5;
-          
-          // 8. Thêm trái tim vào trang web
-          document.body.appendChild(heart);
-
-          // 9. (Rất quan trọng) Xóa trái tim khỏi DOM sau khi nó rơi xong
-          // Điều này giúp trang web không bị chậm (lag) do có quá nhiều element
-          heart.addEventListener('animationend', () => {
-            heart.remove();
-          });
-        }
-
-        // Dùng 'setInterval' để gọi hàm createHeart() lặp đi lặp lại
-        // Ở đây, một trái tim mới sẽ được tạo ra mỗi 200 mili-giây
-        setInterval(createHeart, 200);
-      </script>
+            "<img style='width:30px;height:30px;' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEtGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgZXhpZjpQaXhlbFhEaW1lbnNpb249IjEwMCIKICAgZXhpZjpQaXhlbFlEaW1lbnNpb249IjEwMCIKICAgZXhpZjpDb2xvclNwYWNlPSIxIgogICB0aWZmOkltYWdlV2lkdGg9IjEwMCIKICAgdGlmZjpJbWFnZUxlbmd0aD0iMTAwIgogICB0aWZmOlJlc29sdXRpb25Vbml0PSIyIgogICB0aWZmOlhSZXNvbHV0aW9uPSI3Mi8xIgogICB0aWZmOllSZXNvbHV0aW9uPSI3Mi8xIgogICBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIgogICBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEiCiAgIHhtcDpNb2RpZnlEYXRlPSIyMDIz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9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V
