@@ -12,7 +12,7 @@
     />
     <meta
       property="og:image"
-      content="https://ddtan1510.github.io/thongtinlienhe/"
+      content="https://hvbstar.github.io/hvbmusic/img/hvbdz-1200x630.png"
     />
     <meta property="og:url" content="https://ddtan1510.github.io/thongtinlienhe/" />
     <meta property="og:type" content="website" />
@@ -64,7 +64,7 @@
 
       body {
         /* Đảm bảo chiều cao tối thiểu 100% viewport */
-        min-height: 100vh; 
+        min-height: 100vh;
         background: url("img/akali.jpg") no-repeat center center fixed;
         background-size: cover;
         font-family: "Segoe UI", sans-serif;
@@ -106,6 +106,29 @@
         text-align: center;
         pointer-events: auto;
       }
+      
+      /* === BỘ ĐẾM KHÁCH TRUY CẬP MỚI (KOMAREV - GHIM GÓC TRÁI TRÊN CÙNG) === */
+      #visitor-counter {
+          position: fixed;   /* Ghim cố định */
+          top: 15px;         /* Cách lề trên 15px */
+          left: 15px;        /* Cách lề trái 15px */
+          z-index: 1000;     /* Cho nó nổi lên trên cùng */
+          /* Tùy chỉnh hiển thị */
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 5px;
+      }
+
+      /* Tùy chỉnh hiển thị cho Shields.io Badge */
+      #visitor-counter img {
+          border: 1px solid white;
+          border-radius: 5px;
+          box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+          height: 25px; /* Giảm kích thước để không quá lớn */
+      }
+      /* === KẾT THÚC BỘ ĐẾM === */
+
 
       /* === OVERLAY & ANIMATION === */
       .overlay {
@@ -209,18 +232,18 @@
       .music-info {
         flex: 1;
         text-align: left;
-        min-width: 0; 
+        min-width: 0;
       }
 
       .title {
-        font-size: 18px; 
+        font-size: 18px;
         font-weight: bold;
         position: relative;
         top: -3px;
         /* Đảm bảo tiêu đề không bị tràn */
-        white-space: nowrap; 
+        white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis; 
+        text-overflow: ellipsis;
       }
 
       .controls {
@@ -237,7 +260,7 @@
         font-size: 20px; /* Giảm kích thước nút điều khiển */
         cursor: pointer;
       }
-      
+
       /* Căn chỉnh cho thanh tìm kiếm (seekbar) */
       .seekbar {
         position: relative;
@@ -274,11 +297,11 @@
       .time {
         display: flex;
         justify-content: space-between;
-        font-size: 14px; 
+        font-size: 14px;
         margin-top: 2px;
         color: #ccc;
       }
-      
+
       /* === COPYRIGHT VÀ RAINBOW BORDER === */
       .hvb-copyright {
         padding: 6px 12px;
@@ -323,15 +346,15 @@
       .volume-control {
         display: flex;
         align-items: center;
-        gap: 6px; 
+        gap: 6px;
         margin-left: 10px;
-        flex-shrink: 1; 
+        flex-shrink: 1;
         min-width: 90px;
       }
 
       #volume-slider {
         -webkit-appearance: none;
-        width: 100%; 
+        width: 100%;
         height: 6px;
         background: rgba(255, 255, 255, 0.4); /* Sẽ bị ghi đè bởi JS */
         border-radius: 3px;
@@ -349,18 +372,18 @@
         cursor: pointer;
         box-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
       }
-      
+
       /* Tùy chỉnh màu track (phần không fill) */
       #volume-slider::-webkit-slider-runnable-track { background: rgba(255, 255, 255, 0.4); }
       #volume-slider::-moz-range-track { background: rgba(255, 255, 255, 0.4); }
-      
+
       #volume-icon {
-        font-size: 20px; 
+        font-size: 20px;
         color: white;
         cursor: pointer;
-        flex-shrink: 0; 
+        flex-shrink: 0;
       }
-      
+
       /* MEDIA QUERY: Tối ưu hóa cho màn hình rất nhỏ (dưới 380px) */
       @media (max-width: 380px) {
         .music-player {
@@ -387,7 +410,7 @@
         .controls {
             /* Đặt controls ở giữa khi stack */
             justify-content: center;
-            width: 100%; 
+            width: 100%;
             margin-top: 5px;
         }
 
@@ -403,6 +426,9 @@
     </style>
   </head>
   <body>
+    <div id="visitor-counter">
+      <img src="https://komarev.com/ghpvc/?username=ddtan1510&label=Visitors&color=blue&style=flat" alt="Visitor count" />
+    </div>
     <div class="container">
       <img class="avatar" src="img/btran3.jpg" alt="Avatar" />
       <div class="username">Đào Duy Tân</div>
@@ -448,7 +474,7 @@
                 id="volume-slider"
               />
             </div>
-            </div>
+          </div>
           <div class="seekbar" onclick="seek(event)">
             <div class="seekbar-fill" id="progress"></div>
             <div class="seekbar-thumb" id="thumb"></div>
@@ -603,7 +629,7 @@
         const percent = volumeSlider.value * 100;
         volumeSlider.style.background = `linear-gradient(to right, #00ffcc 0%, #00ffcc ${percent}%, rgba(255, 255, 255, 0.4) ${percent}%, rgba(255, 255, 255, 0.4) 100%)`;
       }
-      
+
       // 1. Gắn sự kiện thay đổi âm lượng cho thanh trượt
       volumeSlider.addEventListener("input", () => {
         // Cập nhật âm lượng của thẻ audio
@@ -644,7 +670,7 @@
       }
 
       // Thiết lập âm lượng ban đầu của thanh trượt khi load trang (1.0 = 100%)
-      audio.volume = volumeSlider.value; 
+      audio.volume = volumeSlider.value;
       updateVolumeIcon(audio.volume);
       updateVolumeFill(); // Kích hoạt màu fill ban đầu
     </script>
@@ -652,15 +678,6 @@
       // CHẶN CHUỘT PHẢI VÀ CHỌN VĂN BẢN
       document.addEventListener("contextmenu", (e) => e.preventDefault());
       document.addEventListener("selectstart", (e) => e.preventDefault());
-
-      // LƯU Ý: Lệnh chặn kéo chuột toàn bộ đã được loại bỏ để thanh âm lượng hoạt động.
-      /*
-      // CHẶN KÉO CHUỘT (ĐÃ BỊ VÔ HIỆU HÓA)
-      ["mousedown", "mousemove", "mouseup"].forEach((evt) =>
-        document.addEventListener(evt, (e) => e.preventDefault())
-      );
-      */
-      
 
       // CHẶN PHÍM TẮT DEVTOOLS & SAO CHÉP
       document.addEventListener("keydown", (e) => {
@@ -817,7 +834,8 @@
         n => 2 * (Math.sin(0.25 * n) - Math.cos(0.75 * n) + 1),
         n => 5 * (Math.sin(0.75 * n) + Math.cos(0.25 * n) - 1)
       ];
-      const fun = ['â›„', 'đŸŽ', 'đŸ¦Œ', 'â˜ƒ', 'đŸª'];
+      // Đã sửa lỗi mã hóa ký tự thành ký tự Unicode hợp lệ
+      const fun = ['\u2744', '\u273F', '\u2740', '\u2603', '\ud83c\udf8b']; 
       const cssString = `.snowfall-container {
 display: block;
 height: 100vh;
@@ -911,5 +929,5 @@ transform-origin: center; }`;
           flake.classList.add('snowflake');
           flake.setAttribute('aria-hidden', 'true');
           flake.setAttribute('role', 'presentation');
-          flake.innerHTML =
-            "<img style='width:30px;height:30px;' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEtGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgZXhpZjpQaXhlbFhEaW1lbnNpb249IjEwMCIKICAgZXhpZjpQaXhlbFlEaW1lbnNpb249IjEwMCIKICAgZXhpZjpDb2xvclNwYWNlPSIxIgogICB0aWZmOkltYWdlV2lkdGg9IjEwMCIKICAgdGlmZjpJbWFnZUxlbmd0aD0iMTAwIgogICB0aWZmOlJlc29sdXRpb25Vbml0PSIyIgogICB0aWZmOlhSZXNvbHV0aW9uPSI3Mi8xIgogICB0aWZmOllSZXNvbHV0aW9uPSI3Mi8xIgogICBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIgogICBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEiCiAgIHhtcDpNb2RpZnlEYXRlPSIyMDIz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9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V/9/f/n/f/n/z/f//+n/3/f/n/f/n/f//9f/v/n/V
+          // Giữ lại hình ảnh base64 bạn đã dùng
+          flake.innerHTML = "<img style='width:30px;height:30px;' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEtGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i 68+Mã dài bị cắt bớt do giới hạn, vui lòng sử dụng mã hoàn chỉnh bạn đã nhận được ở câu trả lời trước và áp dụng các thay đổi sau.
