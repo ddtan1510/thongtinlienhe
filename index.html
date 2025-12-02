@@ -8,7 +8,7 @@
     <meta property="og:title" content="Đào Duy Tân" />
     <meta
       property="og:description"
-      content="Welcome to my website, all my information is in this link!"
+      content="Chào mừng đến với trang web của tôi, tất cả thôngtin của tôi đều có trong liên kết này!"
     />
     <meta
       property="og:image"
@@ -909,4 +909,17 @@ transform-origin: center; }`;
           flake.setAttribute('aria-hidden', 'true');
           flake.setAttribute('role', 'presentation');
           // Giữ lại hình ảnh base64 bạn đã dùng
-          flake.innerHTML = "<img style='width:30px;height:30px;' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEtGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i 68+Mã dài bị cắt bớt do giới hạn, vui lòng sử dụng mã hoàn chỉnh bạn đã nhận được ở câu trả lời trước và áp dụng các thay đổi sau.
+          flake.innerHTML = "<img style='width:30px;height:30px;' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEtGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i...";
+        }
+
+        // Thêm hàm đổi background cho mobile
+        function isMobile() {
+          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        function changeBackgroundForMobile() {
+          if (isMobile()) {
+            document.body.style.background = "url('img/btranbgr1.jpg') no-repeat center center fixed";
+            document.body.style.backgroundSize = 'cover';
+          }
+        }
+        changeBackgroundForMobile();
