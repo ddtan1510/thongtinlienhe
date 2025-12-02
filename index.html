@@ -65,7 +65,7 @@
       body {
         /* Đảm bảo chiều cao tối thiểu 100% viewport */
         min-height: 100vh;
-        background: url("img/btranbgr.jpg") no-repeat center center fixed;
+        background: url("img/akali.jpg") no-repeat center center fixed;
         background-size: 100% auto;
         font-family: "Segoe UI", sans-serif;
         color: white;
@@ -912,14 +912,4 @@ transform-origin: center; }`;
           flake.innerHTML = "<img style='width:30px;height:30px;' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAEtGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i...";
         }
 
-        // Thêm hàm đổi background cho mobile
-        function isMobile() {
-          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        }
-        function changeBackgroundForMobile() {
-          if (isMobile()) {
-            document.body.style.background = "url('img/btranbgr1.jpg') no-repeat center center fixed";
-            document.body.style.backgroundSize = 'cover';
-          }
-        }
-        changeBackgroundForMobile();
+     
