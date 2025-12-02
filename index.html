@@ -77,6 +77,32 @@
         overflow-y: auto; /* Cho phép cuộn dọc */
         padding: 20px 0; /* Thêm padding trên dưới cho nội dung */
       }
+      body {
+        /* --- CẤU HÌNH BACKGROUND FULL MÀN HÌNH --- */
+        min-height: 100vh; /* Chiều cao luôn bằng 100% màn hình thiết bị */
+        width: 100%;
+        
+        /* Thay đường dẫn ảnh của bạn vào đây */
+        background: url("img/btranbgr.jpg") no-repeat center center;
+        
+        /* Giữ ảnh cố định khi cuộn */
+        background-attachment: fixed; 
+        
+        /* Phủ kín toàn bộ màn hình */
+        background-size: cover; 
+        
+        /* --- CĂN GIỮA NỘI DUNG --- */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        font-family: "Segoe UI", sans-serif;
+        color: white;
+        user-select: none;
+        -webkit-user-drag: none;
+        overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
+        padding: 20px 0;
+      }
 
       /* Ngăn đè và lưu ảnh */
       img.avatar,
